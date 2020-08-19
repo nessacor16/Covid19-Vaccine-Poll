@@ -3,12 +3,16 @@ const http = require('http');
 const bodyParser = require("body-parser");
 // const cores = require("cores"); 
 // Mongodb connection...
+const MongoClient = require('mongodb').MongoClient;
+const assert = require('assert');
+
 
 require("dotenv").config();
+const mongodb = require("mongodb");
 const mongoose = require("mongoose");
+
 // I there is a special name or location -- {path: path/filename}
 const express = require('express');
-const connectDB = require('./DB/Connection')
 const app = express();
 
 
@@ -17,7 +21,7 @@ const app = express();
 let port = process.env.PORT || 3000;
 let host = process.env.HOST;
 
-connectDB();
+// connectDB();
 app.use(bodyParser.json());
 // app.use(cores());
 
@@ -31,34 +35,21 @@ app.use(
 
 
 
-
-
-
-
-mongoose.set('useNewUrlParser', true);
-mongoose.set('useFindAndModify', false);
-mongoose.set('useCreateIndex', true);
-mongoose.set('useUnifiedTopology', true);
-
-
-
-
-
-
-// mongoose
-// .connect(MONGODB_URI)
-// .then(() => console.log("MongoDB connected"))
-// .catch(err => console.log(err))
-
-MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://covid19-vaccinepoll.tcjgy.mongodb.net/titanPlanet"
-mongoose
-    .connect("mongodb+srv://covid19-vaccinepoll.tcjgy.mongodb.net/titanPlanet", { useUnifiedTopology: true,  useNewUrlParser: true})
+uri = process.env.uri || process.env.ATLAS_URI
+mongodb.connect("mongodb+srv://localhost:27017/Covid19-VaccinePoll", { 
+  useNewUrlParser: true, 
+  useUnifiedTopology: true,
+ })
     .catch(err => {
-      console.log('DB Connection Error: ' + err);
+      console.log('mongodb+srv Connection Error: ' + err);
  })
     .then(() => {
         console.log('Connected to Mongo!');
     });
+
+
+const client = new MongoClient(uri, {useUnifiedTopology: true});
+    
 
 // Creating the Server
 let server = http.createServer((req, res) => {

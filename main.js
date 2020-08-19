@@ -1,12 +1,25 @@
-// Driver into code, Establish connection to Atlas Cluster
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://<username>:<password>@covid19-vaccinepoll.tcjgy.mongodb.net/<dbname>?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
-});
-// Define Atlas URI
 
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://localhost:27017/Covid19-VaccinePoll"
+
+
+const client = new MongoClient(uri, { 
+  useNewUrlParser: true, 
+  useUnifiedTopology: true,
+ });
+
+
+// client.connect(err => {
+//   const collection = client.db("test").collection("devices");
+//   // perform actions on the collection object
+//   client.close();
+// });
+
+client.connect().then(result => {
+  const database = client.db("Covid19-VaccinePoll");
+  console.log(result);
+}, error => {
+  console.error(error);
+}
+  );
 
