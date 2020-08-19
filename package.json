@@ -1,0 +1,32 @@
+{
+  "name": "covid19-vaccine-poll",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server-env.js",
+  "scripts": {
+    "start": "node server-env.js $npm_package_config_port",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cross-env NODE_ENV=production OTHERFLAG=myValue webpack --config build/webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nessacor16/Covid19-Vaccine-Poll.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nessacor16/Covid19-Vaccine-Poll/issues"
+  },
+  "homepage": "https://github.com/nessacor16/Covid19-Vaccine-Poll#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "config.json": "0.0.4",
+    "cores": "^0.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "http-server": "^0.12.3",
+    "mongodb": "^3.6.0",
+    "mongoose": "^5.10.0",
+    "nodemon": "^2.0.4"
+  }
+}
