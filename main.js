@@ -1,24 +1,36 @@
 
 // Using MongoClient Class
 const MongoClient = require('mongodb').MongoClient;
-// const uri = "mongodb://localhost:27017/Covid19-VaccinePoll"
+require('dotenv').config();
 
 
-const client = new MongoClient(process.env.ATLAS_URI, { 
-  useNewUrlParser: true, 
-  useUnifiedTopology: true,
- });
+const uri = "mongodb+srv://<titanPlanet>:<Missionpossible16%21>@covid19-vaccinepoll.tcjgy.mongodb.net/< Covid19-VaccinePoll>?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true,  useUnifiedTopology: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+  // console.log(result)
+});
 
 
-// Establish a Connection
-client.connect().then(result => {
-  const database = client.db("Covid19-VaccinePoll");
-  const collection = database.collection("States")
-  console.log(result);
-}, error => {
-  console.error(error);
-}
-  );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // (async ()=> {
 //   await client.connect();

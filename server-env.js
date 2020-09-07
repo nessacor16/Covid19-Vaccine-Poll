@@ -1,15 +1,16 @@
 // Using dotenv to manage ENV variables in Node JS
 const http = require('http');
 const bodyParser = require("body-parser");
-// const cores = require("cores"); 
+const cores = require("cores"); 
 // Mongodb connection...
+
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 
 
 require("dotenv").config();
 const mongodb = require("mongodb");
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 
 // I there is a special name or location -- {path: path/filename}
 const express = require('express');
@@ -18,7 +19,7 @@ const app = express();
 
 // When the above script run--it will have access to all the 'dotenv' passwords and etc. it will go through the process called 'process.env'
 // Using the variables from the .env "host" and "port" inside of -- the 'config' will get the variables; process.env.PORT
-let port = process.env.PORT || 3000;
+let port = process.env.PORT || 1234;
 let host = process.env.HOST;
 
 // connectDB();
@@ -35,21 +36,21 @@ app.use(
 
 
 
-uri = process.env.uri || process.env.ATLAS_URI
+uri = "mongodb+srv://localhost:1234/Covid19-VaccinePoll"
 
-mongodb.connect("process.env.ATLAS_URI", { 
+mongodb.connect(uri, { 
   useNewUrlParser: true, 
   useUnifiedTopology: true,
- })
-    .catch(err => {
+ }).catch(err => {
       console.log('mongodb+srv Connection Error: ' + err);
- })
-    .then(() => {
+ }).then(() => {
         console.log('Connected to Mongo!');
-    });
+  }).catch(err => console.log(err));
+  // console.log(db);
 
 
-const client = new MongoClient(uri, {useUnifiedTopology: true});
+
+// const client = new MongoClient(uri, {useUnifiedTopology: true});
     
 
 // Creating the Server
