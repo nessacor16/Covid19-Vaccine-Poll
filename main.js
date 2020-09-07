@@ -1,15 +1,16 @@
 
+// Using MongoClient Class
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb://localhost:27017/Covid19-VaccinePoll"
+// const uri = "mongodb://localhost:27017/Covid19-VaccinePoll"
 
 
-const client = new MongoClient(uri, { 
+const client = new MongoClient(process.env.ATLAS_URI, { 
   useNewUrlParser: true, 
   useUnifiedTopology: true,
  });
 
 
-
+// Establish a Connection
 client.connect().then(result => {
   const database = client.db("Covid19-VaccinePoll");
   const collection = database.collection("States")

@@ -36,7 +36,8 @@ app.use(
 
 
 uri = process.env.uri || process.env.ATLAS_URI
-mongodb.connect("mongodb://localhost:27017/Covid19-VaccinePoll", { 
+
+mongodb.connect("process.env.ATLAS_URI", { 
   useNewUrlParser: true, 
   useUnifiedTopology: true,
  })
